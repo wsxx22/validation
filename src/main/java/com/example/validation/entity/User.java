@@ -28,7 +28,6 @@ public class User {
     @Column(unique = true)
     private String login;
 
-    @NotNull
     @ValidPassword
     //@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$", message = "niepoprawne haslo..")
     private String password;

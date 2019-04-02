@@ -12,7 +12,10 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
 
     @Override
     public boolean isValid(String password, ConstraintValidatorContext context) {
+        context.disableDefaultConstraintViolation(); // wyłączenie domyślnego komunikatu
+
         if (password == null) {
+            context.buildConstraintViolationWithTemplate("Password cannot be null").addConstraintViolation();
             return false;
         }
 
@@ -29,7 +32,6 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
             return true;
         }
 
-        context.disableDefaultConstraintViolation(); // wyłączenie domyślnego komunikatu
         validator.getMessages(result).forEach(s -> { // dodanie szczegółowych błędów do wyniku
             context.buildConstraintViolationWithTemplate(s).addConstraintViolation();
         });
